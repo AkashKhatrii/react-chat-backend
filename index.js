@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGO_URI)
 const app = express()
 
 app.use(cors({
-    origin: process.env.ORIGIN ,
+    origin: "https://teeter.netlify.app" ,
     credentials: true,
   }));
 
@@ -23,6 +23,7 @@ app.use(cors({
       'Access-Control-Allow-Headers',
       'Origin, X-Requested-With, Content-Type, Accept'
     )
+    res.header('Access-Control-Allow-Origin', 'https://teeter.netlify.app')
     next()
   })
 
