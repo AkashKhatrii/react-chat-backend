@@ -19,7 +19,7 @@ router.post("/register", async (req, res) => {
   res.status(200).json({ message: "User saved", data: data });
 });
 
-maxAge = 60 * 60;
+
 
 router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
@@ -35,7 +35,10 @@ router.post("/login", async (req, res) => {
         } else {
           // console.log(token)
           // res.cookie("name", "akash")
-          res.cookie("access_token", token);
+          res.cookie("access_token", token, { httpOnly:true,
+            maxAge:3600000*5,
+            secure:true,
+            sameSite:'none',});
           res.status(200).json({ user: user, access_token: token});
         }
       });
