@@ -20,7 +20,7 @@ router.post("/register", async (req, res) => {
 });
 
 maxAge = 60 * 60;
-path = "http://localhost:3000/";
+
 router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   // console.log(user)
@@ -35,8 +35,8 @@ router.post("/login", async (req, res) => {
         } else {
           // console.log(token)
           // res.cookie("name", "akash")
-          res.cookie("access_token", token);
-          res.status(200).json({ user: user, access_token: token });
+          res.cookie("access_token", token, { sameSite: none, secure: true });
+          res.status(200).json({ user: user, access_token: token});
         }
       });
     } else {
