@@ -35,7 +35,7 @@ router.post("/login", async (req, res) => {
         } else {
           // console.log(token)
           // res.cookie("name", "akash")
-          res.cookie("access_token", token, { sameSite: none, secure: true });
+          res.cookie("access_token", token);
           res.status(200).json({ user: user, access_token: token});
         }
       });
